@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #f4f7f5;
+  --foreground: #14201c;
+  --muted: #5a6b64;
+  --surface: #e8efeb;
+  --border: #c5d2cb;
+  --accent: #1f7a6c;
+  --accent-fg: #f4f7f5;
+  --grain: rgba(20, 32, 28, 0.05);
+}
+
+.dark {
+  --background: #0b1210;
+  --foreground: #e8f0ec;
+  --muted: #94a59d;
+  --surface: #121c19;
+  --border: #24332e;
+  --accent: #5eb3a0;
+  --accent-fg: #07110e;
+  --grain: rgba(232, 240, 236, 0.04);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --font-sans: var(--font-figtree);
+  --font-display: var(--font-bricolage);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-figtree), system-ui, sans-serif;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 10% -10%, color-mix(in oklab, var(--accent) 18%, transparent), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 100% 0%, color-mix(in oklab, var(--accent) 10%, transparent), transparent 50%);
+  background-attachment: fixed;
+}
+
+.font-display {
+  font-family: var(--font-bricolage), var(--font-figtree), system-ui, sans-serif;
+}
+
+.hero-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+.journey-line {
+  animation: journey-draw 1.2s ease forwards;
+  transform-origin: left;
+}
+
+@keyframes journey-draw {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+::selection {
+  background: color-mix(in oklab, var(--accent) 35%, transparent);
+  color: var(--foreground);
+}
