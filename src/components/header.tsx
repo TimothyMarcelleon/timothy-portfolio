@@ -1,11 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { profile } from "@/data/profile";
+import { GithubIcon } from "./icons";
 import { ThemeToggle } from "./theme-toggle";
 
 const links = [
   { href: "#about", label: "About" },
   { href: "#skills", label: "Skills" },
+  { href: "#case-studies", label: "Case Studies" },
   { href: "#experience", label: "Experience" },
   { href: "#education", label: "Education" },
   { href: "#contact", label: "Contact" },
@@ -37,7 +40,18 @@ export function Header() {
             </a>
           ))}
         </nav>
-        <ThemeToggle />
+        <div className="flex items-center gap-2">
+          <a
+            href={profile.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Timothy Marcelleon on GitHub"
+            className="inline-flex size-10 items-center justify-center rounded-md border border-border bg-surface/70 text-foreground transition-colors hover:border-accent/50 hover:text-accent"
+          >
+            <GithubIcon className="size-4" />
+          </a>
+          <ThemeToggle />
+        </div>
       </div>
     </motion.header>
   );
