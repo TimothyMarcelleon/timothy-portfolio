@@ -2,6 +2,7 @@
 
 import { Mail, Phone, Link2 } from "lucide-react";
 import { profile } from "@/data/profile";
+import { GithubIcon } from "./icons";
 import { RevealOnScroll } from "./reveal";
 
 export function Contact() {
@@ -23,7 +24,7 @@ export function Contact() {
         </RevealOnScroll>
 
         <RevealOnScroll delay={0.1}>
-          <ul className="mt-12 grid gap-4 sm:grid-cols-3">
+          <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <li>
               <a
                 href={`mailto:${profile.email}`}
@@ -59,6 +60,20 @@ export function Contact() {
                 <span className="text-sm text-muted">LinkedIn</span>
                 <span className="break-all text-sm text-foreground group-hover:text-accent">
                   View profile
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                href={profile.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex h-full flex-col gap-3 border border-border bg-surface/30 p-5 transition-colors hover:border-accent/45"
+              >
+                <GithubIcon className="size-4 text-accent" />
+                <span className="text-sm text-muted">GitHub</span>
+                <span className="break-all text-sm text-foreground group-hover:text-accent">
+                  {profile.githubLabel}
                 </span>
               </a>
             </li>

@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ArrowDownRight, MapPin } from "lucide-react";
+import { ArrowDownRight, Download, MapPin, ShieldCheck } from "lucide-react";
 import { profile } from "@/data/profile";
+import { GithubIcon } from "./icons";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -51,12 +52,28 @@ export function Hero() {
           initial="hidden"
           animate="show"
         >
+          <motion.div
+            variants={item}
+            className="mb-5 flex flex-wrap items-center gap-2.5"
+          >
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface/60 px-3 py-1.5 text-sm text-muted">
+              <MapPin className="size-3.5 text-accent" strokeWidth={1.75} />
+              {profile.location}
+            </span>
+            <span
+              className="inline-flex items-center gap-1.5 rounded-full border border-accent/35 bg-accent/10 px-3 py-1.5 text-sm font-medium text-accent"
+              title={profile.workRightsDetail}
+            >
+              <ShieldCheck className="size-3.5" strokeWidth={1.75} />
+              {profile.workRights}
+            </span>
+          </motion.div>
+
           <motion.p
             variants={item}
-            className="mb-5 flex items-center gap-2 text-sm text-muted"
+            className="mb-5 -mt-2 text-xs tracking-wide text-muted sm:text-sm"
           >
-            <MapPin className="size-3.5 text-accent" strokeWidth={1.75} />
-            {profile.location}
+            {profile.workRightsDetail}
           </motion.p>
 
           <motion.h1
@@ -88,12 +105,34 @@ export function Hero() {
               <ArrowDownRight className="size-4" strokeWidth={1.75} />
             </motion.a>
             <motion.a
-              href="#experience"
+              href="#case-studies"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
               className="inline-flex items-center rounded-md border border-border bg-surface/70 px-5 py-3 text-sm font-medium text-foreground"
             >
               See the work
+            </motion.a>
+            <motion.a
+              href={profile.cvUrl}
+              download
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-flex items-center gap-2 rounded-md border border-border bg-surface/70 px-5 py-3 text-sm font-medium text-foreground"
+            >
+              <Download className="size-4" strokeWidth={1.75} />
+              Download CV
+            </motion.a>
+            <motion.a
+              href={profile.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-flex items-center gap-2 rounded-md border border-border bg-surface/70 px-5 py-3 text-sm font-medium text-foreground"
+              aria-label="Timothy Marcelleon on GitHub"
+            >
+              <GithubIcon className="size-4" />
+              GitHub
             </motion.a>
           </motion.div>
 
